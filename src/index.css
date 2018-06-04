@@ -64,6 +64,7 @@ body
 }
 
 .header {
+  display:flex;
   height: 30px;
   padding-top: 5px;
   padding-left: 10px;
@@ -81,7 +82,7 @@ body
   width: 90%;
   margin: 0 auto 10px;
   background: #fff;
-  min-height: 100px;
+  min-height: 40px;
   border-radius: 5px;
   box-shadow: 1px 1px 1px rgba(0,0,0,.3);
   -webkit-transition: .15s;
@@ -89,9 +90,13 @@ body
   cursor: pointer;
 }
 
+.add-card {
+  float:right;
+}
+
 .laplane .header {
     position: relative;
-    padding: 5px 8px;
+    padding: 10px 12px;
     margin-bottom: 10px;
     zoom: 1;
 }
@@ -112,7 +117,6 @@ body
 
 .card .card-container {
   padding: 10px;
-  border-bottom: 1px solid #dbdbdb;
   zoom: 1;
 }
 

@@ -3,12 +3,16 @@ import 'antd/dist/antd.css'
 
 
 class Header extends Component {
+
   render() {
     return (
       <div className="header">
         <div className="header-name">
-          Waiting for Sales
+          {this.props.title}
         </div>
+        <a className="add-card" href="#">
+          +
+        </a>
       </div>
     )
   }
