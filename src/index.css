@@ -1,0 +1,174 @@
+
+
+html body #root {
+  height: 100%;
+  width: 100%;
+  background-color: #0079bf;
+  background-size: 100%;
+  zoom: 1;
+  overflow: auto;
+  line-height: 18px;
+  color: #4d4d4d;
+  font-weight: 400;
+}
+
+body
+{
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+}
+
+.u-fancy-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.title {
+  padding: 16px 8px 32px 16px;
+  font-weight: 800;
+  font-size: 20px;
+  color: #f6f6f6;
+}
+
+.ant-row-flex {
+    /*display: -ms-flexbox;*/
+    display: flex;
+    /*-ms-flex-flow: row wrap;*/
+    flex-flow: row !important;
+}
+
+.laplanes {
+  padding-left: 8px;
+  overflow: auto;
+  /*white-space: nowrap;*/
+  height: 100%;
+  width: 100%;
+  display: inline;
+}
+
+.lap-content {
+  height: 90%;
+}
+
+.laplane {
+  /*height: 100%;*/
+  background-color: #e2e4e6;
+  overflow: auto;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+  border-radius: 3px;
+}
+
+.header {
+  height: 30px;
+  padding-top: 5px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.cards {
+  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 20px;
+}
+
+.card {
+  width: 90%;
+  margin: 0 auto 10px;
+  background: #fff;
+  min-height: 100px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  -webkit-transition: .15s;
+  transition: .15s;
+  cursor: pointer;
+}
+
+.laplane .header {
+    position: relative;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    zoom: 1;
+}
+
+.laplane .header .header-name {
+    font-weight: 700;
+    white-space: normal;
+    width: 100%;
+}
+
+.card .card-name {
+  padding: 5px 10px;
+  border-bottom: 1px solid #dbdbdb;
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-world;
+}
+
+.card .card-container {
+  padding: 10px;
+  border-bottom: 1px solid #dbdbdb;
+  zoom: 1;
+}
+
+.card .card-container .card-avatar img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+}
+
+.card .card-container .card-avatar {
+    width: 70px;
+    float: left;
+    margin-bottom: 5px;
+    border-radius: 50%;
+}
+
+.card .card-container .card-content .card-author {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.card .card-container .card-content p {
+  margin: 5px 0;
+}
+
+.card .card-container .card-content {
+  white-space: normal;
+}
+
+.card .card-performers {
+  zoom: 1;
+  padding: 5px 10px;
+}
+
+.card .card-performers .add-performers .performer {
+  float: left;
+}
+
+.card .card-performers .add-performers .performer img {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+
+
+
+/*.gutter-example .ant-row > div {
+  background: transparent;
+  border: 0;
+}
+.gutter-box {
+  background: #00A0E9;
+  padding: 5px 0;
+}*/
