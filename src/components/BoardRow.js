@@ -1,92 +1,58 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import BoardColumn from './BoardColumn';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
+import lapLanes from '../data/lapLanes';
 
 class BoardRow extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      lapLanes: [
-        {
-          title: "Waiting For Sales",
-          cards: [
-            {
-              description: "Make it rain"
-            },
-            {
-              description: "Lebron James Co."
-            },
-            {
-              description: "Cats for Days"
-            },
-            {
-              description: "If we don't make this sale we're going to go out of business we better do really really really really well"
-            }
-          ]
-        },
-        {
-          title: "In Progress",
-          cards: [
-            {
-              description: "Uh oh we're starting already?"
-            },
-            {
-              description: "Million dollar project"
-            },
-            {
-              description: "Dogs for Days"
-            },
-            {
-              description: "Let's go!"
-            }
-          ]
-        },
-        {
-          title: "QA",
-          cards: [
-            {
-              description: "Finally we're QA ready"
-            },
-            {
-              description: "Katie is cute"
-            },
-            {
-              description: "Taint no doubt about it"
-            },
-            {
-              description: "Laughing Gas"
-            }
-          ]
-        },
-        {
-          title: "Deployed",
-          cards: [
-            {
-              description: "Enjoyable deployable"
-            },
-            {
-              description: "Jake and Jubi's Snack Co."
-            },
-            {
-              description: "Date Balls"
-            },
-            {
-              description: "Dane's Body Shop"
-            }
-          ]
-        },
-      ]
-    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = lapLanes;
+  }
+
+  handleClick(i) {
+    const lapLanes = this.state.lapLanes.slice();
+    if (!lapLanes[i].title.editing) {
+      this.updateEditingValue(i)
+    }
+  }
+
+  handleChange(event, i) {
+    const lapLanes = this.state.lapLanes.slice();
+    lapLanes[i].title.name = event.target.value;
+    this.setState({
+      lapLanes: lapLanes
+    })
+  }
+
+  handleSubmit(event, i) {
+    console.log('test')
+    event.preventDefault();
+    this.updateEditingValue(i)
+  }
+
+  updateEditingValue(i) {
+    const lapLanes = this.state.lapLanes.slice();
+    lapLanes[i].title.editing = !lapLanes[i].title.editing;
+    this.setState({
+      lapLanes: lapLanes
+    })
   }
 
   renderColumn(lane, i) {
     return (
       <Col key={i} span={5} className="lap-content">
         <BoardColumn
-          title={lane.title}
+          title={lane.title.name}
+          editing={lane.title.editing}
           cards={lane.cards}
+          onHeaderClick={() => this.handleClick(i)}
+          onHeaderChange={(event) => this.handleChange(event, i)}
+          onHeaderSubmit={(event) => this.handleSubmit(event, i)}
         />
       </Col>
     )
@@ -98,6 +64,7 @@ class BoardRow extends Component {
         <div className="title">
           Front-end demo of Trello!
         </div>
+
         <Row type="flex" gutter={20} align="top" className="laplanes">
           {this.state.lapLanes.map((lane, i) => this.renderColumn(lane, i))}
         </Row>
