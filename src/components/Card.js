@@ -13,9 +13,7 @@ class Card extends Component {
   renderCard() {
     if (this.props.editing) {
       return (
-        // <form onSubmit={this.props.onCardSubmit}>
-          <Input.TextArea size="small" value={this.props.description} onChange={this.props.onCardChange} onPressEnter={this.props.onCardSubmit}/>
-        // </form>
+        <Input.TextArea size="small" value={this.props.description} onChange={this.props.onCardChange} onPressEnter={this.props.onCardSubmit}/>
       )
     } else {
       return (
