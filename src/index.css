@@ -87,11 +87,39 @@ body
   box-shadow: 1px 1px 1px rgba(0,0,0,.3);
   -webkit-transition: .15s;
   transition: .15s;
+  overflow-y: auto;
+}
+
+.card-text {
   cursor: pointer;
+  float:left;
+  display:inline-block;
+  width:80%;
+  padding-bottom: 10px;
 }
 
 .add-card {
   float:right;
+  cursor: pointer;
+  background-color: Transparent;
+  border: none;
+  outline:none;
+}
+
+.card .delete-card {
+  cursor: pointer;
+  background-color: Transparent;
+  border: none;
+  outline:none;
+  position: relative;
+  right: -5px;
+  bottom: 5px;
+  display:inline-block;
+  float: right;
+  vertical-align: top;
+  z-index: 40;
+  opacity: .8;
+  /*margin-bottom: 10px;*/
 }
 
 .laplane .header {

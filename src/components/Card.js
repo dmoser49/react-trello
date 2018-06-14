@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 import { Input } from 'antd';
-const { TextArea } = Input;
+import { Modal, Button } from 'antd';
+const confirm = Modal.confirm;
 
 class Card extends Component {
 
-  constructor(props) {
-    super(props);
-    // console.log("card props: ", this.props)
+  showDeleteConfirm() {
+    let deleteCard = this.props.onDeleteCardClick;
+    confirm({
+      title: 'Are you sure delete this task?',
+      // content: 'Some descriptions',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteCard()
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
   }
 
   renderCard() {
     if (this.props.editing) {
       return (
-        <Input.TextArea size="small" value={this.props.description} onChange={this.props.onCardChange} onPressEnter={this.props.onCardSubmit}/>
+        <Input.TextArea autosize="true" value={this.props.description} onChange={this.props.onCardChange} onPressEnter={this.props.onCardSubmit}/>
       )
     } else {
       return (
         <div>
-          {this.props.description}
+          <div className="card-text" onClick={this.props.onCardClick}>
+            {this.props.description}
+          </div>
+          <button className="delete-card" onClick={this.showDeleteConfirm.bind(this)}>
+            x
+          </button>
         </div>
       )
     }
@@ -27,7 +45,7 @@ class Card extends Component {
   render() {
     return (
       <div className="card">
-        <div className="card-container" onClick={this.props.onCardClick}>
+        <div className="card-container">
           {this.renderCard()}
         </div>
       </div>

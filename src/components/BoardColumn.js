@@ -4,9 +4,6 @@ import Card from './Card';
 import 'antd/dist/antd.css'
 
 class BoardColumn extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleCardClick(i) {
     this.props.handleCardClick(i);
@@ -20,6 +17,10 @@ class BoardColumn extends Component {
     this.props.handleCardSubmit(event, i);
   }
 
+  handleDeleteCardClick(i) {
+    this.props.handleDeleteCardClick(i)
+  }
+
   renderCards(card, i) {
     return (
       <Card
@@ -29,6 +30,7 @@ class BoardColumn extends Component {
         onCardClick={() => {this.handleCardClick(i)}}
         onCardChange={(event) => {this.handleCardChange(event, i)}}
         onCardSubmit={(event) => {this.handleCardSubmit(event, i)}}
+        onDeleteCardClick={() => {this.props.handleDeleteCardClick(i)}}
       />
     )
   }
@@ -39,9 +41,9 @@ class BoardColumn extends Component {
         header={this.props.header}
         editing={this.props.editing}
         onHeaderClick={this.props.handleHeaderClick}
-        onAddCardClick={this.props.handleAddCardClick}
         onHeaderChange={this.props.handleHeaderChange}
         onHeaderSubmit={this.props.handleHeaderSubmit}
+        onAddCardClick={this.props.handleAddCardClick}
       />
     )
   }

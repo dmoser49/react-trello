@@ -27,15 +27,6 @@ class BoardRow extends Component {
     }
   }
 
-  handleAddCardClick(i) {
-    // console.log("handleAddCardClick: ", i)
-    const lapLanes = this.state.lapLanes.slice();
-    lapLanes[i].cards.push({description: '', editing: true})
-    this.setState({
-      lapLanes: lapLanes
-    })
-  }
-
   handleHeaderChange(event, i) {
     const lapLanes = this.state.lapLanes.slice();
     lapLanes[i].header.name = event.target.value;
@@ -48,6 +39,15 @@ class BoardRow extends Component {
     // console.log('test')
     event.preventDefault();
     this.updateHeaderEditingValue(i)
+  }
+
+  handleAddCardClick(i) {
+    // console.log("handleAddCardClick: ", i)
+    const lapLanes = this.state.lapLanes.slice();
+    lapLanes[i].cards.push({description: '', editing: true})
+    this.setState({
+      lapLanes: lapLanes
+    })
   }
 
   updateHeaderEditingValue(i) {
@@ -72,6 +72,16 @@ class BoardRow extends Component {
     // console.log(event.target.value)
     // console.log(lapLanes[i].cards[cardIndex])
     lapLanes[i].cards[cardIndex].description = event.target.value;
+    this.setState({
+      lapLanes: lapLanes
+    })
+  }
+
+  handleDeleteCardClick(i, cardIndex) {
+    console.log("handleDeleteCardClick: ", i)
+    console.log("cardIndex: ", cardIndex)
+    const lapLanes = this.state.lapLanes.slice();
+    lapLanes[i].cards.splice(cardIndex, 1)
     this.setState({
       lapLanes: lapLanes
     })
@@ -102,13 +112,14 @@ class BoardRow extends Component {
           editing={lane.header.editing}
           cards={lane.cards}
           handleHeaderClick={() => this.handleHeaderClick(i)}
-          handleAddCardClick={() => this.handleAddCardClick(i)}
           handleHeaderChange={(event) => this.handleHeaderChange(event, i)}
           handleHeaderSubmit={(event) => this.handleHeaderSubmit(event, i)}
+          handleAddCardClick={() => this.handleAddCardClick(i)}
 
           handleCardClick={(cardIndex) => this.handleCardClick(i, cardIndex)}
           handleCardChange={(event, cardIndex) => this.handleCardChange(event, i, cardIndex)}
           handleCardSubmit={(event, cardIndex) => this.handleCardSubmit(event, i, cardIndex)}
+          handleDeleteCardClick={(cardIndex) => this.handleDeleteCardClick(i, cardIndex)}
         />
       </Col>
     )
