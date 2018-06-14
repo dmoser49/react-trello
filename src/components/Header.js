@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
+import {Input} from 'antd';
 
 
 class Header extends Component {
@@ -7,14 +8,14 @@ class Header extends Component {
   renderHeader() {
     if (this.props.editing) {
       return (
-        <form className="header-name" onSubmit={this.props.onHeaderSubmit} onBlur={console.log('blurrr')} onFocus={console.log('focus!!!')}>
-          <input type="text" value={this.props.title} onChange={this.props.onHeaderChange} onBlur={console.log('blur')} onFocus={console.log('focus!!!')}/>
+        <form className="header-name" onSubmit={this.props.onHeaderSubmit}>
+          <Input size="small" value={this.props.header} onChange={this.props.onHeaderChange} />
         </form>
       )
     } else {
       return (
         <div className="header-name">
-          {this.props.title}
+          {this.props.header}
         </div>
       )
     }

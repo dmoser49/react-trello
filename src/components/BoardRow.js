@@ -8,51 +8,97 @@ class BoardRow extends Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleHeaderClick = this.handleHeaderClick.bind(this);
+    this.handleHeaderChange = this.handleHeaderChange.bind(this);
+    this.handleHeaderSubmit = this.handleHeaderSubmit.bind(this);
+
+    this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleCardChange = this.handleCardChange.bind(this);
+    this.handleCardSubmit = this.handleCardSubmit.bind(this);
     this.state = lapLanes;
+    // console.log(lapLanes)
   }
 
-  handleClick(i) {
+  // handle header events
+  handleHeaderClick(i) {
     const lapLanes = this.state.lapLanes.slice();
-    if (!lapLanes[i].title.editing) {
-      this.updateEditingValue(i)
+    if (!lapLanes[i].header.editing) {
+      this.updateHeaderEditingValue(i)
     }
   }
 
-  handleChange(event, i) {
+  handleHeaderChange(event, i) {
     const lapLanes = this.state.lapLanes.slice();
-    lapLanes[i].title.name = event.target.value;
+    lapLanes[i].header.name = event.target.value;
     this.setState({
       lapLanes: lapLanes
     })
   }
 
-  handleSubmit(event, i) {
-    console.log('test')
+  handleHeaderSubmit(event, i) {
+    // console.log('test')
     event.preventDefault();
-    this.updateEditingValue(i)
+    this.updateHeaderEditingValue(i)
   }
 
-  updateEditingValue(i) {
+  updateHeaderEditingValue(i) {
     const lapLanes = this.state.lapLanes.slice();
-    lapLanes[i].title.editing = !lapLanes[i].title.editing;
+    lapLanes[i].header.editing = !lapLanes[i].header.editing;
+    this.setState({
+      lapLanes: lapLanes
+    })
+  }
+
+  // handle card events
+  handleCardClick(i, cardIndex) {
+    const lapLanes = this.state.lapLanes.slice();
+    if (!lapLanes[i].cards[cardIndex].editing) {
+      this.updateCardEditingValue(i, cardIndex)
+    }
+  }
+
+  handleCardChange(event, i, cardIndex) {
+    // console.log('handle card change')
+    const lapLanes = this.state.lapLanes.slice();
+    // console.log(event.target.value)
+    // console.log(lapLanes[i].cards[cardIndex])
+    lapLanes[i].cards[cardIndex].description = event.target.value;
+    this.setState({
+      lapLanes: lapLanes
+    })
+  }
+
+  handleCardSubmit(event, i, cardIndex) {
+    console.log('handle card submit')
+    event.preventDefault();
+    this.updateCardEditingValue(i, cardIndex);
+  }
+
+  updateCardEditingValue(i, cardIndex) {
+    const lapLanes = this.state.lapLanes.slice();
+    // console.log("before: ", lapLanes[i].cards[cardIndex].editing)
+    lapLanes[i].cards[cardIndex].editing = !lapLanes[i].cards[cardIndex].editing;
+    // console.log("after: ", lapLanes[i].cards[cardIndex].editing)
     this.setState({
       lapLanes: lapLanes
     })
   }
 
   renderColumn(lane, i) {
+    // console.log("lane: ", lane)
     return (
       <Col key={i} span={5} className="lap-content">
         <BoardColumn
-          title={lane.title.name}
-          editing={lane.title.editing}
+          header={lane.header.name}
+          editing={lane.header.editing}
           cards={lane.cards}
-          onHeaderClick={() => this.handleClick(i)}
-          onHeaderChange={(event) => this.handleChange(event, i)}
-          onHeaderSubmit={(event) => this.handleSubmit(event, i)}
+          handleHeaderClick={() => this.handleHeaderClick(i)}
+          handleHeaderChange={(event) => this.handleHeaderChange(event, i)}
+          handleHeaderSubmit={(event) => this.handleHeaderSubmit(event, i)}
+
+          handleCardClick={(cardIndex) => this.handleCardClick(i, cardIndex)}
+          handleCardChange={(event, cardIndex) => this.handleCardChange(event, i, cardIndex)}
+          handleCardSubmit={(event, cardIndex) => this.handleCardSubmit(event, i, cardIndex)}
         />
       </Col>
     )

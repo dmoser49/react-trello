@@ -101,10 +101,14 @@ body
 }
 
 .laplane .header .header-name {
-    font-weight: 700;
-    float: left;
-    /*white-space: normal;*/
-    width: 100%;
+  font-weight: 700;
+  float: left;
+  /*white-space: normal;*/
+  width: 100%;
+}
+
+Input {
+  font-weight: 700;
 }
 
 .card .card-container {

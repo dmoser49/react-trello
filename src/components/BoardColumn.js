@@ -6,14 +6,41 @@ import 'antd/dist/antd.css'
 class BoardColumn extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
 
-  renderCards(description, i) {
+  handleCardClick(i) {
+    this.props.handleCardClick(i);
+  }
+
+  handleCardChange(event, i) {
+    this.props.handleCardChange(event, i);
+  }
+
+  handleCardSubmit(event, i) {
+    this.props.handleCardSubmit(event, i);
+  }
+
+  renderCards(card, i) {
     return (
       <Card
         key={i}
-        description={description}
+        description={card.description}
+        editing={card.editing}
+        onCardClick={() => {this.handleCardClick(i)}}
+        onCardChange={(event) => {this.handleCardChange(event, i)}}
+        onCardSubmit={(event) => {this.handleCardSubmit(event, i)}}
+      />
+    )
+  }
+
+  renderHeader() {
+    return (
+      <Header
+        header={this.props.header}
+        editing={this.props.editing}
+        onHeaderClick={this.props.handleHeaderClick}
+        onHeaderChange={this.props.handleHeaderChange}
+        onHeaderSubmit={this.props.handleHeaderSubmit}
       />
     )
   }
@@ -21,15 +48,9 @@ class BoardColumn extends Component {
   render() {
     return (
       <div className="laplane">
-        <Header
-          title={this.props.title}
-          editing={this.props.editing}
-          onHeaderClick={this.props.onHeaderClick}
-          onHeaderChange={this.props.onHeaderChange}
-          onHeaderSubmit={this.props.onHeaderSubmit}
-        />
+        {this.renderHeader()}
         <div className="cards">
-          {this.props.cards.map((card, i) => this.renderCards(card.description, i))}
+          {this.props.cards.map((card, i) => this.renderCards(card, i))}
         </div>
       </div>
     )
