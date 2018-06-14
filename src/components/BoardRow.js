@@ -27,6 +27,15 @@ class BoardRow extends Component {
     }
   }
 
+  handleAddCardClick(i) {
+    // console.log("handleAddCardClick: ", i)
+    const lapLanes = this.state.lapLanes.slice();
+    lapLanes[i].cards.push({description: '', editing: true})
+    this.setState({
+      lapLanes: lapLanes
+    })
+  }
+
   handleHeaderChange(event, i) {
     const lapLanes = this.state.lapLanes.slice();
     lapLanes[i].header.name = event.target.value;
@@ -69,7 +78,7 @@ class BoardRow extends Component {
   }
 
   handleCardSubmit(event, i, cardIndex) {
-    console.log('handle card submit')
+    // console.log('handle card submit')
     event.preventDefault();
     this.updateCardEditingValue(i, cardIndex);
   }
@@ -93,6 +102,7 @@ class BoardRow extends Component {
           editing={lane.header.editing}
           cards={lane.cards}
           handleHeaderClick={() => this.handleHeaderClick(i)}
+          handleAddCardClick={() => this.handleAddCardClick(i)}
           handleHeaderChange={(event) => this.handleHeaderChange(event, i)}
           handleHeaderSubmit={(event) => this.handleHeaderSubmit(event, i)}
 

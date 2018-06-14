@@ -39,6 +39,7 @@ class BoardColumn extends Component {
         header={this.props.header}
         editing={this.props.editing}
         onHeaderClick={this.props.handleHeaderClick}
+        onAddCardClick={this.props.handleAddCardClick}
         onHeaderChange={this.props.handleHeaderChange}
         onHeaderSubmit={this.props.handleHeaderSubmit}
       />

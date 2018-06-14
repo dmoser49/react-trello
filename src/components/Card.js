@@ -7,7 +7,7 @@ class Card extends Component {
 
   constructor(props) {
     super(props);
-    console.log("card props: ", this.props)
+    // console.log("card props: ", this.props)
   }
 
   renderCard() {

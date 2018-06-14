@@ -23,11 +23,11 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header" onClick={this.props.onHeaderClick}>
-        <div className="header-name">
+      <div className="header">
+        <div className="header-name" onClick={this.props.onHeaderClick}>
           {this.renderHeader()}
         </div>
-        <button className="add-card">
+        <button className="add-card" onClick={this.props.onAddCardClick}>
           +
         </button>
       </div>
