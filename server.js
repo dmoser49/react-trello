@@ -7,6 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
+console.log("PORT: ", port)
+
 mongoose.connect(keys.mongoURI)
 
 require('./routes/board')(app);

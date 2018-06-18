@@ -6,6 +6,7 @@ const Board = require('../models/Board');
 module.exports = app => {
   app.get('/', (req, res, next) => {
     Board.find((err, products) => {
+      console.log('inside /')
       if (err) return next(err);
       res.json(products);
     });
@@ -13,6 +14,7 @@ module.exports = app => {
 
   app.get('/api/getBoard', (req, res, next) => {
     Board.find((err, products) => {
+      console.log('inside /api/getBoard')
       if (err) return next(err);
       res.json(products);
     });
