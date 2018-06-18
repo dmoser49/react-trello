@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 import { Input } from 'antd';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 const confirm = Modal.confirm;
 
 class Card extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import BoardColumn from './BoardColumn';
+import axios from 'axios';
 import 'antd/dist/antd.css';
-import lapLanes from '../data/lapLanes';
 
 class BoardRow extends Component {
 
@@ -15,8 +15,23 @@ class BoardRow extends Component {
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleCardChange = this.handleCardChange.bind(this);
     this.handleCardSubmit = this.handleCardSubmit.bind(this);
-    this.state = lapLanes;
-    // console.log(lapLanes)
+
+    this.state = this.props.lapLanes;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate nextProps: ', nextProps)
+    console.log('componentWillUpdate nextState: ', nextState)
+    this.updateData(nextProps);
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    this.setState({lapLanes: nextProps.lapLanes})
+  }
+
+  updateData = async (nextProps) => {
+    console.log("NEXT PROPS: ", nextProps)
+    const res = await axios.post('/api/updateBoard', {lapLanes: nextProps.lapLanes});
   }
 
   // handle header events
@@ -104,7 +119,6 @@ class BoardRow extends Component {
   }
 
   renderColumn(lane, i) {
-    // console.log("lane: ", lane)
     return (
       <Col key={i} span={5} className="lap-content">
         <BoardColumn
@@ -133,7 +147,7 @@ class BoardRow extends Component {
         </div>
 
         <Row type="flex" gutter={20} align="top" className="laplanes">
-          {this.state.lapLanes.map((lane, i) => this.renderColumn(lane, i))}
+          {this.state.lapLanes ? this.state.lapLanes.map((lane, i) => this.renderColumn(lane, i)) : <div>Loading...</div>}
         </Row>
       </div>
     )

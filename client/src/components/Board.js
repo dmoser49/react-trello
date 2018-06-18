@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
-import BoardRow from './BoardRow'
+import BoardRow from './BoardRow';
+import axios from 'axios';
 
 class Board extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
-    response: ''
+    lapLanes: {}
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
+    const self = this;
+    this.getData()
+      .then(res => {self.setState({ lapLanes: res })})
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
+  getData = async () => {
+    const res = await axios.get('/api/getBoard');
+    return res.data[0].lapLanes;
   };
+
   render() {
     return (
-      <BoardRow />
+      <BoardRow lapLanes={this.state.lapLanes}/>
     );
   }
 }
