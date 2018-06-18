@@ -5,12 +5,12 @@ const keys = require('./config/keys');
 
 const app = express();
 app.use(bodyParser.json());
-const port = process.env.PORT || 5000;
 
-console.log("PORT: ", port)
+console.log("PORT: ", PORT)
 
 mongoose.connect(keys.mongoURI)
 
 require('./routes/board')(app);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Listening on port ${port}`));
