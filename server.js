@@ -11,6 +11,7 @@ mongoose.connect(keys.mongoURI)
 require('./routes/board')(app);
 
 if (process.env.NODE_ENV === 'production') {
+  console.log("inside if!!")
   // Express will serve up production assets
   // like our main.js/main.css file
   app.use(express.static('client/build'));
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   // doesn't recognize route
   const path = require('path');
   app.get('*', (req, res) => {
+    console.log("inside app.get")
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
