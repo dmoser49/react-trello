@@ -6,8 +6,6 @@ const keys = require('./config/keys');
 const app = express();
 app.use(bodyParser.json());
 
-console.log("PORT: ", PORT)
-
 mongoose.connect(keys.mongoURI)
 
 require('./routes/board')(app);
