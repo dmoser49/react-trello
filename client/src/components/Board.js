@@ -16,6 +16,7 @@ class Board extends Component {
   }
 
   getData = async () => {
+    console.log("getting data")
     const res = await axios.get('/api/getBoard');
     return res.data[0].lapLanes;
   };
